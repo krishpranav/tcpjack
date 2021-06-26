@@ -5,3 +5,8 @@ use structopt::StructOpt;
 #[derive(Debug, StructOpt)]
 #[structopt(global_settings = &[AppSettings::ColoredHelp], after_help=r#"The original shijack in C was written by spwny and released around 2001.
 shijack credited cyclozine for inspiration."#)]
+
+pub struct Args {
+    pub interface: String,
+    
+}
