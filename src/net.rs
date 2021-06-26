@@ -27,3 +27,16 @@ pub struct Connection {
     pub seq: Arc<Mutex<u32>>,
     pub ack: Arc<Mutex<u32>>,
 }
+
+impl Connection {
+    #[inline]
+    pub fn new(src: SocketAddr, dst: SocketAddr, seq: u32, ack: u32) -> Connection {
+        Connection {
+            src,
+            dst,
+            seq: Arc::new(Mutex::new(seq)),
+            ack: Arc::new(Mutex::new(ack)),
+        }
+    }
+    
+}
