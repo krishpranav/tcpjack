@@ -104,3 +104,9 @@ impl Connection {
         )
     }
 }
+
+
+pub struct IpHeader {
+    source_addr: IpAddr,
+    dest_addr: IpAddr,
+}
