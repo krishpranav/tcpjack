@@ -44,7 +44,7 @@ impl Connection {
         let mut guard = self.seq.lock().unwrap();
         *guard += inc;
     }
-    
+
     #[inline]
     pub fn set_ack(&self, ack: u32) {
         let mut guard = self.ack.lock().unwrap();
@@ -91,4 +91,16 @@ impl Connection {
         )
     }
 
+    #[inline]
+    pub fn reset(&mut self, tx: &mut TransportSender) -> Result<()> {
+        sendtcp(
+            tx,
+            &self.src,
+            &self.dst,
+            TcpFlags::RST,
+            self.get_seq(),
+            0,
+            &[],
+        )
+    }
 }
