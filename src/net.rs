@@ -45,4 +45,9 @@ impl Connection {
         *guard += inc;
     }
     
+    #[inline]
+    pub fn set_ack(&self, ack: u32) {
+        let mut guard = self.ack.lock().unwrap();
+        *guard = ack;
+    }
 }
