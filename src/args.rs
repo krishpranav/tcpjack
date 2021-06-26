@@ -8,5 +8,6 @@ shijack credited cyclozine for inspiration."#)]
 
 pub struct Args {
     pub interface: String,
-    
+    pub src: SocketAddr,
+    pub dst: SocketAddr,
 }
