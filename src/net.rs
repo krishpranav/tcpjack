@@ -50,4 +50,9 @@ impl Connection {
         let mut guard = self.ack.lock().unwrap();
         *guard = ack;
     }
+
+    #[inline]
+    pub fn get_seq(&self) -> u32 {
+        *self.seq.lock().unwrap()
+    }
 }
