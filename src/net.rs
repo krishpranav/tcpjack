@@ -19,3 +19,11 @@ use pktparse::{ip, ipv4, ipv6};
 use std::io::{self, Write};
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr, SocketAddrV4, SocketAddrV6};
 use std::sync::{Arc, Mutex};
+
+#[derive(Debug, Clone)]
+pub struct Connection {
+    pub src: SocketAddr,
+    pub dst: SocketAddr,
+    pub seq: Arc<Mutex<u32>>,
+    pub ack: Arc<Mutex<u32>>,
+}
