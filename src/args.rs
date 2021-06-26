@@ -10,4 +10,7 @@ pub struct Args {
     pub interface: String,
     pub src: SocketAddr,
     pub dst: SocketAddr,
+
+    #[structopt(long)]
+    pub seq: Option<u32>,
 }
