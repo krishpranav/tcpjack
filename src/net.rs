@@ -55,4 +55,9 @@ impl Connection {
     pub fn get_seq(&self) -> u32 {
         *self.seq.lock().unwrap()
     }
+
+    #[inline]
+    pub fn get_ack(&self) -> u32 {
+        *self.ack.lock().unwrap()
+    }
 }
