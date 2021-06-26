@@ -38,5 +38,11 @@ impl Connection {
             ack: Arc::new(Mutex::new(ack)),
         }
     }
+
+    #[inline]
+    pub fn bump_seq(&self, inc: u32) {
+        let mut guard = self.seq.lock().unwrap();
+        *guard += inc;
+    }
     
 }
