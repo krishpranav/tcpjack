@@ -76,4 +76,19 @@ impl Connection {
         Ok(())
     }
 
+    #[inline]
+    pub fn ack(&mut self, tx: &mut TransportSender, mut ack: u32, data: &[u8]) -> Result<()> {
+        ack += data.len() as u32;
+        self.set_ack(ack);
+        sendtcp(
+            tx,
+            &self.src,
+            &self.dst,
+            TcpFlags::ACK,
+            self.get_seq(),
+            ack,
+            &[],
+        )
+    }
+
 }
