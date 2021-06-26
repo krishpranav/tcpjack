@@ -8,3 +8,5 @@
 #include <fcntl.h>
 #include <sys/time.h>
 #include <unistd.h>
+
+#define lrandom(min, max) (random()%(max-min)+min)
