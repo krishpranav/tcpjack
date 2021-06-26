@@ -60,4 +60,20 @@ impl Connection {
     pub fn get_ack(&self) -> u32 {
         *self.ack.lock().unwrap()
     }
+
+    #[inline]
+    pub fn sendtcp(&mut self, tx: &mut TransportSender, flags: u16, data: &[u8]) -> Result<()> {
+        sendtcp(
+            tx,
+            &self.src,
+            &self.dst,
+            flags,
+            self.get_seq(),
+            self.get_ack(),
+            &data,
+        )?;
+        self.bump_seq(data.len() as u32);
+        Ok(())
+    }
+
 }
